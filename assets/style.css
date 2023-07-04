@@ -1,0 +1,19 @@
+.card{
+    background-color: #555555;
+    color: #ffffff;
+}
+button{
+    background-image: linear-gradient(to right, #474747 0%, #2c3e50  51%, #474747  100%);
+}
+.eg{
+    color: white;
+}
+.card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+.gif{
+    width: auto;
+    height: 350px;
+}
