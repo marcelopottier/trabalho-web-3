@@ -60,7 +60,7 @@ async function random(){
 async function fetchImage(code) {
   //Proxy para funcionamento da API, a API utilizada não tem CORS permitivo.
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-  const url = ${proxyUrl}https://httpcats.com/${code}.json;
+  const url = `${proxyUrl}https://httpcats.com/${code}.json`;
   const response = await fetch(url);
   const json = await response.json();
   return json;
