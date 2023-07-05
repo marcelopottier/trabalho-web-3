@@ -1,4 +1,15 @@
 let jsonData;
+let button = document.querySelectorAll(".btn");
+button.forEach(btn => {
+  btn.addEventListener('click', (event) => {
+    if(btn.id == 'aleatorio'){
+      random(btn);
+    }else{
+      fillDataInput(btn);
+    }
+  });
+});
+
 
 function fetchData() {
     return new Promise((resolve, reject) => {
@@ -33,20 +44,22 @@ function listData(){
       }
 }
 
-async function fillDataInput() {
+async function fillDataInput(btn) {
+    let inputFunction = true;
     let input = document.getElementById("code-text").value;
     let codeInput = document.getElementById("http-code-input");
     let descInput = document.getElementById("http-desc-input");
-    let fImage = await fetchImage(input);
+    let fImage = await fetchImage(input, btn);
     let imgDiv = document.getElementById("img-input");
+    imgDiv.classList.remove("gif");
     imgDiv.src = fImage.image.jpg;
     codeInput.innerHTML = jsonData[input].code;
     descInput.innerHTML = jsonData[input].description;
 }
 
-async function random(){
+async function random(btn){
     let number = getRandomNumber(jsonData);
-    let fImage = await fetchImage(number.code);
+    let fImage = await fetchImage(number.code, btn);
     let codeRandom = document.getElementById("http-code-random");
     let imgDivRandom = document.getElementById("imgDivRandom");
     let descRandom = document.getElementById("http-desc-random");
@@ -56,12 +69,22 @@ async function random(){
 
 }
 
+async function fetchImage(code, btnElement) {
+    btnElement.setAttribute('disabled', true);
+    btnElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Carregando...';
 
-async function fetchImage(code) {
   //Proxy para funcionamento da API, a API utilizada não tem CORS permitivo.
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   const url = `${proxyUrl}https://httpcats.com/${code}.json`;
-  const response = await fetch(url);
+  const response = await fetch(url)
+      .then((res) => {
+          btnElement.removeAttribute('disabled');
+          btnElement.innerHTML = 'Gerar Gato!';
+        return res;
+      }).catch((error) => {
+        btnElement.removeAttribute('disabled');
+        btnElement.innerHTML = 'Gerar Gato!';
+      });
   const json = await response.json();
   return json;
 }
@@ -83,7 +106,6 @@ function getRandomNumber(jsonData){
 window.onload = async function() {
     try {
       jsonData = await fetchData();
-      console.log('deu boa:', jsonData);
       listData();
     } catch (error) {
       console.error('erro no fetch', error);
