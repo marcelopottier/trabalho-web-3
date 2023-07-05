@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous">
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HTTP Cats</title>
@@ -23,10 +27,7 @@
               <div class="card-footer">
                 <h5 class="card-title" id="http-code-random">Gere um gato aleatório abaixo!</h5>
                 <p class="card-text"  id="http-desc-random"></p>
-                <button id="aleatorio" onclick="random()" type="button" class="btn btn-secondary mt-auto">Gato Aleatório</button>
-                <button class="btn btn-primary hide" type="button" disabled>
-                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...
-                </button>
+                <button id="aleatorio" type="button" class="btn btn-secondary mt-auto">Gerar Gato!</button>
               </div>
             </div>
           </div>
@@ -39,9 +40,9 @@
                 <h5 class="card-title" id="http-code-input">Escreva o código HTTP e gere um Gato!</h5>
                 <p class="card-text" id="http-desc-input"></p>
                 <div class="input-group mb-3 align-self-end">
-                  <input type="text" class="form-control" placeholder="Código HTTP" aria-label="Username" aria-describedby="basic-addon1" id="code-text">
+                  <input type="text" class="form-control" placeholder="Código HTTP" aria-label="Username" aria-describedby="basic-addon1" id="code-text" value="200">
                 </div>  
-                <button id="aleatorio" onclick="fillDataInput()"; type="button" class="btn btn-secondary mt-auto">Gerar Gato</button>
+                <button id="input-btn" type="button" class="btn btn-secondary">Gerar Gato!</button>
               </div>
             </div>
           </div>
