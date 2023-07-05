@@ -74,7 +74,7 @@ async function fetchImage(code, btnElement) {
     btnElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Carregando...';
 
   //Proxy para funcionamento da API, a API utilizada não tem CORS permitivo.
-  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  const proxyUrl = "https://corsproxy.io/?";
   const url = `${proxyUrl}https://httpcats.com/${code}.json`;
   const response = await fetch(url)
       .then((res) => {
